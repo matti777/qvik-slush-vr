@@ -12,6 +12,7 @@ APP.VideoTexture	= function(width, height, videoPath){
     self.video.autoplay = true;
     self.video.loop = true;
     self.video.src = videoPath;
+    self.video.volume = 0.0;
     self.video.load();
 
     // Create a canvas for rendering the video into

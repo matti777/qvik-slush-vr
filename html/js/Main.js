@@ -7,6 +7,10 @@ var stereoEffect;
 
 var imageLoader = new APP.ImageLoader();
 var events = new APP.EventDispatcher();
+var clock = new THREE.Clock();
+
+// 'Constants'
+var MovementSpeed = 0.8; // m/s
 
 function init() {
   scene = new THREE.Scene();
@@ -66,6 +70,27 @@ function onDrag(location, diff) {
   camera.rotation.y += diff.x / 500;
 }
 
+function handleMovement() {
+  var v = new THREE.Vector3();
+  var delta = clock.getDelta();
+
+  if (input.moveForward) {
+    camera.getWorldDirection(v);
+  }
+
+  if (input.moveBackward) {
+    camera.getWorldDirection(v);
+    v.negate();
+  }
+
+  var position = camera.position.clone();
+  position.addScaledVector(v, (delta * MovementSpeed));
+
+  //TODO check position against environment
+
+  camera.position.copy(position);
+}
+
 function animate(time) {
   // Request next frame to be drawn after this one completes
   requestAnimationFrame(animate);
@@ -73,6 +98,8 @@ function animate(time) {
   if (controls) {
     controls.update();
   }
+
+  handleMovement();
 
   // Render the visuals
   if (stereoEffect) {

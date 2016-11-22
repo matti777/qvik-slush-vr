@@ -99,18 +99,45 @@ APP.Input = function() {
     }
   };
 
+  // Key events
+  this.onKeyDown = function (event) {
+    // console.log('down:', event.keyCode);
+    switch (event.keyCode) {
+      case 87:
+        this.moveForward = true; // W
+        break;
+      case 83:
+        this.moveBackward = true; // S
+        break;
+    }
+  };
+
+  this.onKeyUp = function (event) {
+    switch (event.keyCode) {
+      case 87:
+        this.moveForward = false; // W
+        break;
+      case 83:
+        this.moveBackward = false; // S
+        break;
+    }
+  };
+
   self.isDragging = false;
   self.lastPosition = null;
   self.touchId = null;
 
-  document.body.addEventListener('mousedown', self.onMouseDown.bind(self), true);
-  document.body.addEventListener('mouseup', self.onMouseUp.bind(self), true);
-  document.body.addEventListener('mousemove', self.onMouseMove.bind(self), true);
+  document.body.addEventListener('mousedown', self.onMouseDown.bind(self), false);
+  document.body.addEventListener('mouseup', self.onMouseUp.bind(self), false);
+  document.body.addEventListener('mousemove', self.onMouseMove.bind(self), false);
 
-  document.body.addEventListener('touchstart', self.onTouchStart.bind(self), true);
-  document.body.addEventListener('touchend', self.onTouchEnd.bind(self), true);
-  document.body.addEventListener('touchcancel', self.onTouchEnd.bind(self), true);
-  document.body.addEventListener('touchmove', self.onTouchMove.bind(self), true);
+  document.body.addEventListener('touchstart', self.onTouchStart.bind(self), false);
+  document.body.addEventListener('touchend', self.onTouchEnd.bind(self), false);
+  document.body.addEventListener('touchcancel', self.onTouchEnd.bind(self), false);
+  document.body.addEventListener('touchmove', self.onTouchMove.bind(self), false);
+
+  document.body.addEventListener('keydown', self.onKeyDown.bind(self), false);
+  document.body.addEventListener('keyup', self.onKeyUp.bind(self), false);
 };
 
 APP.Input.constructor = APP.Input;
