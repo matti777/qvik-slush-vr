@@ -138,6 +138,11 @@ APP.Input = function() {
 
   document.body.addEventListener('keydown', self.onKeyDown.bind(self), false);
   document.body.addEventListener('keyup', self.onKeyUp.bind(self), false);
+
+  // HACK:
+  // window.removeEventListener('deviceorientation', function(event) {
+  //   videoPanel.play();
+  // }, false);
 };
 
 APP.Input.constructor = APP.Input;

@@ -8,10 +8,17 @@ APP.Panel = function() {
 
   var self = this;
 
+  // self.play = function() {
+  //   if (!self.isPlayCalled) {
+  //     self.videoTexture.video.play();
+  //     self.isPlayCalled = true;
+  //   }
+  // }
+
   self.init = function() {
     var geometry = new THREE.BoxGeometry(Width, Height, Depth);
 
-    self.videoTexture = new APP.VideoTexture(480, 204, 'data/video.ogv');
+    self.videoTexture = new APP.VideoTexture(480, 204, 'data/slush2016.mp4');
     var otherMaterial = new THREE.MeshPhongMaterial({color: 0xAAAAAA});
     var imageMaterial = new THREE.MeshPhongMaterial({map: self.videoTexture});
 

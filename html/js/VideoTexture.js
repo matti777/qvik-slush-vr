@@ -12,8 +12,11 @@ APP.VideoTexture	= function(width, height, videoPath){
     self.video.autoplay = true;
     self.video.loop = true;
     self.video.src = videoPath;
-    self.video.volume = 0.0;
+    //self.video.volume = 0.0;
+    self.video.muted = true;
     self.video.load();
+    self.video.playsinline = true;
+    self.video['webkit-playsinline'] = true;
 
     // Create a canvas for rendering the video into
     self.canvas = document.createElement('canvas');
