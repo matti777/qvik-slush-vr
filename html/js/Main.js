@@ -83,11 +83,12 @@ function handleMovement() {
     v.negate();
   }
 
+  // Only move in the XZ plane
+  v.y = 0;
+
   var position = camera.position.clone();
   position.addScaledVector(v, (delta * MovementSpeed));
-
-  //TODO check position against environment
-
+  position = environment.confineLocation(position);
   camera.position.copy(position);
 }
 

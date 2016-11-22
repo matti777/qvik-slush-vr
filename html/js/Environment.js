@@ -6,6 +6,11 @@ APP.Environment = function() {
   var Depth = Width;
   var Height = 4;
 
+  var confineMaxX = (Width / 2) - 0.5;
+  var confineMinX = -confineMaxX;
+  var confineMinZ = -((Depth / 2) - 3);
+  var confineMaxZ = (Depth / 2) - 0.5;
+
   var self = this;
 
   self.size = {width: Width, depth: Depth, height: Height};
@@ -22,6 +27,22 @@ APP.Environment = function() {
       normalMap: normalMapTexture
     });
   }
+
+  /**
+   * Confines the location within the environment
+   *
+   * @param location
+   */
+  self.confineLocation = function(location) {
+    var confined = location.clone();
+
+    confined.x = Math.min(confined.x, confineMaxX);
+    confined.x = Math.max(confined.x, confineMinX);
+    confined.z = Math.min(confined.z, confineMaxZ);
+    confined.z = Math.max(confined.z, confineMinZ);
+
+    return confined;
+  };
 
   // Initialize threejs visuals
   self.init = function() {
