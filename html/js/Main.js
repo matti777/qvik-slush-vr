@@ -11,7 +11,7 @@ var clock = new THREE.Clock();
 var WorldUp = new THREE.Vector3(0, 1, 0);
 
 // 'Constants'
-var MovementSpeed = 0.8; // m/s
+var MovementSpeed = 1.1; // m/s
 
 function init() {
   scene = new THREE.Scene();
@@ -32,7 +32,6 @@ function init() {
   // Our camera
   var aspect = window.innerWidth / window.innerHeight;
   camera = new THREE.PerspectiveCamera(70, aspect, 0.2, 100);
-  camera.position.z = -2;
   scene.add(camera);
 
   // Add a point light to where our camera is
@@ -82,7 +81,6 @@ function handleMovement() {
     var direction = camera.getWorldDirection();
     var radians = direction.angleTo(WorldUp);
     var degrees = THREE.Math.radToDeg(radians) - 90;
-    console.log('camera tilt degrees: ', degrees);
 
     if (degrees < -20) {
       v = direction;

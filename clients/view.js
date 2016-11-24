@@ -97,10 +97,17 @@ const styles = StyleSheet.create({
     height: window.height,
   },
   webView: {
+    flex: 1,
+    height: window.height,
     backgroundColor: 'black'
   },
   loadingView: {
     flex: 1,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     height: window.height,
     backgroundColor: 'black',
     justifyContent: 'center',
