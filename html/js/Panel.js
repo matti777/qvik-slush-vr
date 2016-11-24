@@ -2,23 +2,18 @@
 var APP = APP || {};
 
 APP.Panel = function() {
-  var Width = 5;
+  var Width = 4;
   var Height = Width * (9 / 16);
   var Depth = 0.10;
 
   var self = this;
 
-  // self.play = function() {
-  //   if (!self.isPlayCalled) {
-  //     self.videoTexture.video.play();
-  //     self.isPlayCalled = true;
-  //   }
-  // }
-
   self.init = function() {
     var geometry = new THREE.BoxGeometry(Width, Height, Depth);
 
-    self.videoTexture = new APP.VideoTexture(480, 204, 'data/slush2016.mp4');
+    // self.videoTexture = new APP.VideoTexture(480, 204, 'data/slush2016.mp4');
+    self.videoTexture = new APP.VideoTexture(854, 480, 'data/slush16+15_480p.mp4');
+    // self.videoTexture = new APP.VideoTexture(480, 204, 'data/video.ogv');
     var otherMaterial = new THREE.MeshPhongMaterial({color: 0xAAAAAA});
     var imageMaterial = new THREE.MeshPhongMaterial({map: self.videoTexture});
 
@@ -33,6 +28,7 @@ APP.Panel = function() {
     var meshMaterial = new THREE.MeshFaceMaterial(faceMaterials);
 
     THREE.Mesh.call(self, geometry, meshMaterial);
+
   };
 
   self.init();

@@ -34,7 +34,7 @@ function init() {
   scene.add(camera);
 
   // Add a point light to where our camera is
-  var pointLight = new THREE.PointLight(0xFFFFFF, 0.8, 100);
+  var pointLight = new THREE.PointLight(0xFFFFFF, 0.9, 30);
   camera.add(pointLight);
 
   try {

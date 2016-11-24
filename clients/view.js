@@ -73,6 +73,7 @@ export default class MainView extends Component {
         <WebViewBridge
           style={styles.webView}
           mediaPlaybackRequiresUserAction={false}
+          allowsInlineMediaPlayback={true}
           domStorageEnabled={true}
           allowFileAccessFromFileURLs={true}
           allowUniversalAccessFromFileURLs={true}

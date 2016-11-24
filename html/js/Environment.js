@@ -2,14 +2,19 @@
 var APP = APP || {};
 
 APP.Environment = function() {
-  var Width = 10;
+  var Width = 12;
   var Depth = Width;
-  var Height = 4;
+  var Height = 3;
 
   var confineMaxX = (Width / 2) - 0.5;
   var confineMinX = -confineMaxX;
   var confineMinZ = -((Depth / 2) - 3);
   var confineMaxZ = (Depth / 2) - 0.5;
+
+  var WallTexture = 'data/qvik_wall_dark.jpg';
+  var WallNormalMap = 'data/qvik_wall_dark-normalmap.jpg';
+  var FloorTexture = 'data/marble.jpg';
+  var FloorNormalMap = 'data/marble-normalmap.jpg';
 
   var self = this;
 
@@ -74,19 +79,16 @@ APP.Environment = function() {
     floorNormalMap.wrapT = THREE.RepeatWrapping;
     floorNormalMap.repeat.set(4, 4);
 
-    var images = [
-      'data/wall.jpg', 'data/wall-normalmap.jpg',
-      'data/wood.jpg', 'data/wood-normalmap.jpg'
-    ];
+    var images = [WallTexture, WallNormalMap, FloorTexture, FloorNormalMap];
 
     imageLoader.load(images, function() {
-      wallTexture.image = imageLoader.images['data/wall.jpg'];
+      wallTexture.image = imageLoader.images[WallTexture];
       wallTexture.needsUpdate = true;
-      floorTexture.image = imageLoader.images['data/wood.jpg'];
+      floorTexture.image = imageLoader.images[FloorTexture];
       floorTexture.needsUpdate = true;
-      wallNormalMap.image = imageLoader.images['data/wall-normalmap.jpg'];
+      wallNormalMap.image = imageLoader.images[WallNormalMap];
       wallNormalMap.needsUpdate = true;
-      floorNormalMap.image = imageLoader.images['data/wood-normalmap.jpg'];
+      floorNormalMap.image = imageLoader.images[FloorNormalMap];
       floorNormalMap.needsUpdate = true;
     });
 
