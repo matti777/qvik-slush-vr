@@ -2,7 +2,7 @@
 var APP = APP || {};
 
 APP.Panel = function() {
-  var Width = 4;
+  var Width = 4.8;
   var Height = Width * (9 / 16);
   var Depth = 0.10;
 

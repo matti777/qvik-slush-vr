@@ -8,6 +8,7 @@ var stereoEffect;
 var imageLoader = new APP.ImageLoader();
 var events = new APP.EventDispatcher();
 var clock = new THREE.Clock();
+var WorldUp = new THREE.Vector3(0, 1, 0);
 
 // 'Constants'
 var MovementSpeed = 0.8; // m/s
@@ -28,9 +29,10 @@ function init() {
   var ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.3);
   scene.add(ambientLight);
 
-  // Our camera; place at the origin
+  // Our camera
   var aspect = window.innerWidth / window.innerHeight;
   camera = new THREE.PerspectiveCamera(70, aspect, 0.2, 100);
+  camera.position.z = -2;
   scene.add(camera);
 
   // Add a point light to where our camera is
@@ -74,13 +76,30 @@ function handleMovement() {
   var v = new THREE.Vector3();
   var delta = clock.getDelta();
 
-  if (input.moveForward) {
-    camera.getWorldDirection(v);
-  }
 
-  if (input.moveBackward) {
-    camera.getWorldDirection(v);
-    v.negate();
+  if (isMobile()) {
+    // Calculate forward/back speed from the tilt angle of the camera
+    var direction = camera.getWorldDirection();
+    var radians = direction.angleTo(WorldUp);
+    var degrees = THREE.Math.radToDeg(radians) - 90;
+    console.log('camera tilt degrees: ', degrees);
+
+    if (degrees < -20) {
+      v = direction;
+      v.negate();
+    } else if (degrees > 20) {
+      v = direction;
+    }
+  } else {
+    // Get the movement from input
+    if (input.moveForward) {
+      camera.getWorldDirection(v);
+    }
+
+    if (input.moveBackward) {
+      camera.getWorldDirection(v);
+      v.negate();
+    }
   }
 
   // Only move in the XZ plane
