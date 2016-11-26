@@ -19,9 +19,11 @@ APP.VideoTexture	= function(width, height, videoPath) {
 
     // console.log('video element: ', self.video);
 
+    if (!isMobile()) {
+      //TODO remove after testing
+      self.video.muted = true;
+    }
     self.video.src = videoPath;
-  //  self.video.load();
-//    self.video.play();
 
     // Create a canvas for rendering the video into
     self.canvas = document.createElement('canvas');

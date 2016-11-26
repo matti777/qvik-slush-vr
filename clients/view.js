@@ -37,7 +37,7 @@ export default class MainView extends Component {
   }
 
   onWebViewLoadStarted() {
-    console.log('web view load started');
+    console.log('web view load started, path: ', indexHtmlPath);
   }
 
   onWebViewLoaded() {

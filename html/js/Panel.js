@@ -12,10 +12,10 @@ APP.Panel = function() {
     var geometry = new THREE.BoxGeometry(Width, Height, Depth);
 
     // self.videoTexture = new APP.VideoTexture(480, 204, 'data/slush2016.mp4');
-    self.videoTexture = new APP.VideoTexture(854, 480, 'data/slush16+15_480p.mp4');
+    self.videoTexture = new APP.VideoTexture(854, 480, 'data/video/slush16+15_480p.mp4');
     // self.videoTexture = new APP.VideoTexture(480, 204, 'data/video.ogv');
     var otherMaterial = new THREE.MeshPhongMaterial({color: 0xAAAAAA});
-    var imageMaterial = new THREE.MeshPhongMaterial({map: self.videoTexture});
+    var imageMaterial = new THREE.MeshBasicMaterial({map: self.videoTexture});
 
     // Make the video texture update itself automatically
     events.addEventListener('render', self.videoTexture.onRender.bind(self.videoTexture));
@@ -28,7 +28,6 @@ APP.Panel = function() {
     var meshMaterial = new THREE.MeshFaceMaterial(faceMaterials);
 
     THREE.Mesh.call(self, geometry, meshMaterial);
-
   };
 
   self.init();

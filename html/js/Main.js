@@ -34,13 +34,9 @@ function init() {
   camera = new THREE.PerspectiveCamera(70, aspect, 0.2, 100);
   scene.add(camera);
 
-  // Add a point light to where our camera is
-  var pointLight = new THREE.PointLight(0xFFFFFF, 0.9, 30);
-  camera.add(pointLight);
-
   try {
     // Create our renderer..
-    renderer = new THREE.WebGLRenderer();
+    renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
