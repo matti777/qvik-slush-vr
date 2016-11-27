@@ -14,6 +14,18 @@ var WorldUp = new THREE.Vector3(0, 1, 0);
 var MovementSpeed = 1.1; // m/s
 
 function init() {
+  try {
+    // Create our renderer..
+    renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+  } catch (error) {
+    console.log('Error creating WebGLRenderer', error);
+    //TODO show error in UI!
+    return;
+  }
+
   scene = new THREE.Scene();
 
   // Create the surrounding environment ("room")
@@ -33,18 +45,6 @@ function init() {
   var aspect = window.innerWidth / window.innerHeight;
   camera = new THREE.PerspectiveCamera(70, aspect, 0.2, 100);
   scene.add(camera);
-
-  try {
-    // Create our renderer..
-    renderer = new THREE.WebGLRenderer({antialias: true});
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-  } catch (error) {
-   console.log('Error creating WebGLRenderer', error);
-    //TODO show error in UI!
-    return;
-  }
 
   // Attach input handler(s)
   input = new APP.Input();
