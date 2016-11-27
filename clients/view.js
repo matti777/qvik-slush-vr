@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     height: window.height,
+    backgroundColor: 'black'
   },
   webView: {
     flex: 1,

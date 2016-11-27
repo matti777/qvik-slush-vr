@@ -142,7 +142,7 @@ APP.Environment = function() {
   self.createLamp = function(object) {
     object.traverse(function(child) {
       if (child instanceof THREE.Mesh) {
-        console.log('child', child);
+        // console.log('child', child);
 
         if (child.name.includes('lampmesh')) {
           child.material.color = new THREE.Color('rgb(218, 165, 32)');
